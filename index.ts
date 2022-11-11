@@ -1,20 +1,11 @@
 "use strict";
 
-import { generate2DWorld } from "./src/generate";
+import promptSync from "prompt-sync";
 
-const caughtPokemons = 0;
+import { catchPokemon } from "./src/ash";
+import { USER_INPUT_MSG } from "./src/constants";
 
-function catchPokemon(directionsToWalk: string): number {
-	const pokemon2DWorld = generate2DWorld();
+const prompt = promptSync();
 
-	// Output
-	console.log("Directions 🚶‍♂️: ", directionsToWalk, caughtPokemons);
-	console.log("World: ");
-	for (let k = 0; k < pokemon2DWorld.length; k++) {
-		console.log(pokemon2DWorld[k]);
-	}
-
-	return caughtPokemons;
-}
-
-catchPokemon("E");
+const userInput = prompt(USER_INPUT_MSG);
+catchPokemon(userInput);

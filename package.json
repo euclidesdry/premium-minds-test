@@ -26,11 +26,14 @@
 		"url": "https://github.com/euclidesdry/premium-minds-test/issues"
 	},
 	"homepage": "https://github.com/euclidesdry/premium-minds-test#readme",
-	"dependencies": {},
+	"dependencies": {
+		"prompt-sync": "^4.2.0"
+	},
 	"devDependencies": {
 		"@tsconfig/node16": "^1.0.3",
 		"@types/jest": "^29.2.2",
 		"@types/node": "16.18.3",
+		"@types/prompt-sync": "^4.2.0",
 		"@typescript-eslint/eslint-plugin": "^5.42.1",
 		"@typescript-eslint/parser": "^5.42.1",
 		"eslint": "^8.27.0",
