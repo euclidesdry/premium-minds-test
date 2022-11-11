@@ -1,0 +1,43 @@
+{
+	"name": "premium-minds-test",
+	"version": "1.0.0",
+	"description": "Solved Pokemon Test from Premium Minds Company",
+	"main": "dist/index.js",
+	"scripts": {
+		"dev": "npx ts-node index.ts",
+		"start": "node dist/index.js",
+		"build": "npx tsc",
+		"lint": "eslint . --fix",
+		"test": "jest"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/euclidesdry/premium-minds-test.git"
+	},
+	"keywords": [
+		"test",
+		"premium",
+		"minds",
+		"Pokemon"
+	],
+	"author": "euclidesdry",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/euclidesdry/premium-minds-test/issues"
+	},
+	"homepage": "https://github.com/euclidesdry/premium-minds-test#readme",
+	"dependencies": {},
+	"devDependencies": {
+		"@tsconfig/node16": "^1.0.3",
+		"@types/jest": "^29.2.2",
+		"@types/node": "16.18.3",
+		"@typescript-eslint/eslint-plugin": "^5.42.1",
+		"@typescript-eslint/parser": "^5.42.1",
+		"eslint": "^8.27.0",
+		"jest": "^29.3.1",
+		"mocha": "^10.1.0",
+		"ts-jest": "^29.0.3",
+		"ts-node": "^10.9.1",
+		"typescript": "^4.8.4"
+	}
+}
