@@ -3,9 +3,10 @@
 import promptSync from "prompt-sync";
 
 import { catchPokemon } from "./src/ash";
-import { USER_INPUT_MSG } from "./src/constants";
+import { sysMessage } from "./src/constants";
 
 const prompt = promptSync();
 
-const userInput = prompt(USER_INPUT_MSG);
+const userInput = prompt(sysMessage.USER_INPUT);
+
 catchPokemon(userInput);
