@@ -1,7 +1,8 @@
 import { sysMessage } from "./constants";
 import { generate2DWorld } from "./generate";
 
-const MOCK_SQUARE_MATRIX_NUM = 10;
+const MOCK_SQUARE_MATRIX_NUM = 8;
+const MOCK_SQUARE_MATRIX_NUM_2 = 1000;
 const MOCK_FAIL_SQUARE_MATRIX_NUM = 0;
 
 describe("generate2DWorld function", () => {
@@ -18,6 +19,15 @@ describe("generate2DWorld function", () => {
 		const expected =
 			generated2DWorld.length === MOCK_SQUARE_MATRIX_NUM &&
 			generated2DWorld.length === MOCK_SQUARE_MATRIX_NUM;
+
+		expect(expected).toBeTruthy();
+	});
+
+	it(`should generate a square bidimensional of given matrix of ${MOCK_SQUARE_MATRIX_NUM_2} items`, () => {
+		const generated2DWorld = generate2DWorld(MOCK_SQUARE_MATRIX_NUM_2);
+		const expected =
+			generated2DWorld.length === MOCK_SQUARE_MATRIX_NUM_2 &&
+			generated2DWorld.length === MOCK_SQUARE_MATRIX_NUM_2;
 
 		expect(expected).toBeTruthy();
 	});

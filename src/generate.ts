@@ -7,7 +7,7 @@ import { setSecondDimension } from "./utils";
  * @returns 2D world pokemon as array of numbers bidimensional
  */
 export function generate2DWorld(mapRange = 5) {
-	const pokemon2DWorld: number[][] = [[]];
+	const pokemon2DWorld: number[][] = [];
 
 	if (mapRange < 5) throw new Error(sysMessage.ERROR_UNDER_THAN_5);
 
@@ -15,6 +15,7 @@ export function generate2DWorld(mapRange = 5) {
 	for (let i = 0; i < mapRange; i++) {
 		// setting second dimension
 		for (let j = 0; j < mapRange; j++) {
+			// setting second dimension to avoid error when the next line sets it own value
 			pokemon2DWorld[i] = setSecondDimension(pokemon2DWorld, i, j);
 			pokemon2DWorld[i][j] = j + 1;
 		}
