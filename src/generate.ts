@@ -1,3 +1,4 @@
+import { sysMessage } from "./constants";
 import { setSecondDimension } from "./utils";
 
 /**
@@ -7,6 +8,8 @@ import { setSecondDimension } from "./utils";
  */
 export function generate2DWorld(mapRange = 5) {
 	const pokemon2DWorld: number[][] = [[]];
+
+	if (mapRange < 5) throw new Error(sysMessage.ERROR_UNDER_THAN_5);
 
 	// Setting the first dimension
 	for (let i = 0; i < mapRange; i++) {
