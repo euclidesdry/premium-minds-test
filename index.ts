@@ -9,7 +9,13 @@ const prompt = promptSync();
 
 const userInput = prompt(sysMessage.USER_INPUT);
 const userInputAllowedDetails = prompt(sysMessage.USER_INPUT_ASK_FOR_DETAILS);
-const isDetailsAllowed = userInputAllowedDetails.toLowerCase() === "y";
-const catchPokemonsByAsh = catchPokemon(userInput, isDetailsAllowed);
+const isAllDetailsAllowed = userInputAllowedDetails.toLowerCase() === "a";
+const isDetailsAllowed =
+	userInputAllowedDetails.toLowerCase() === "y" || isAllDetailsAllowed;
+const catchPokemonsByAsh = catchPokemon(
+	userInput,
+	isDetailsAllowed,
+	isAllDetailsAllowed ? "all" : "last"
+);
 
 console.log(`O Ash acabou pegando ${catchPokemonsByAsh} Pokemons`);

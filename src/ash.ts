@@ -10,7 +10,8 @@ import {
 
 export function catchPokemon(
 	directionsToWalk: string,
-	showDetails = false
+	showDetails = false,
+	detailsType: "all" | "last" = "last"
 ): number {
 	let caughtPokemons = 1;
 	const cardinalPointsRegExp = new RegExp("^(n|s|e|o)*$", "gi");
@@ -29,7 +30,9 @@ export function catchPokemon(
 	] = 0;
 
 	/* istanbul ignore if */
-	if (showDetails) userOutput(pokemon2DWorld, "C", caughtPokemons);
+	if (showDetails) {
+		if (detailsType === "all") userOutput(pokemon2DWorld, "C", caughtPokemons);
+	}
 
 	if (directionsToWalk.length === 0) {
 		throw new Error(sysMessage.ERROR_NO_INPUT);
@@ -42,12 +45,9 @@ export function catchPokemon(
 
 	// Walk to the all given directions
 	for (let i = 0; i < allDirections; i++) {
+		const lastSteep = i === allDirections - 1;
 		const currentMovement = directionsToWalk[i];
-		const newAshPosition = getCurrentPosition(
-			currentMovement,
-			currentPosition,
-			mapExtension
-		);
+		const newAshPosition = getCurrentPosition(currentMovement, currentPosition);
 		const selectedPosition =
 			pokemon2DWorld[newAshPosition.position.vertical][
 				newAshPosition.position.horizontal
@@ -63,6 +63,8 @@ export function catchPokemon(
 		}
 
 		currentPosition = newAshPosition.position;
+
+		if (!lastSteep && detailsType === "last") continue;
 
 		// Output
 		/* istanbul ignore if */

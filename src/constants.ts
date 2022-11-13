@@ -1,6 +1,6 @@
 export enum sysMessage {
 	USER_INPUT = "Por favor, insira as movimentações do Ash usando os pontos cardinais (N,S, E ou O): ",
-	USER_INPUT_ASK_FOR_DETAILS = "Você vai querer visualizar os detalhes? (Y, N)",
+	USER_INPUT_ASK_FOR_DETAILS = "Você vai querer visualizar os detalhes? (Y for yes, A for all, N for no)",
 
 	ERROR_INVALID_DIRECTIONS = "Você introduziu algum caractere que não pertence aos pontos cardiais (N,S,E ou O)",
 	ERROR_NO_INPUT = "Você não introduziu nenhuma movimentação para o Ash relativas aos pontos cardiais (N,S,E ou O)",

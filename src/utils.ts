@@ -1,4 +1,4 @@
-import { PositionType } from "./@types/position";
+import { GenerateNewPositionTypes, PositionType } from "./@types/position";
 import { CONSOLE_COLORS } from "./constants";
 
 /**
@@ -53,9 +53,8 @@ export function getCoordinates(
 
 export function getCurrentPosition(
 	currentMovement: string,
-	currentPosition: PositionType,
-	mapSquareSize?: number
-) {
+	currentPosition: PositionType
+): GenerateNewPositionTypes {
 	const currentCoordinates = getCoordinates(
 		currentPosition.vertical,
 		currentPosition.horizontal,
@@ -120,61 +119,22 @@ export function userOutput(
 	caughtPokemons: number
 ): void {
 	console.log(
-		"Your Directions 🚶‍♂️: ",
-		directionToWalk.toUpperCase(),
+		"\n\nLas Ash Direction 🚶‍♂️: ",
+		`${CONSOLE_COLORS.green}${directionToWalk.toUpperCase()}${
+			CONSOLE_COLORS.reset
+		}`,
+		" - current caught Pokemons",
 		caughtPokemons
 	);
 
+	const colorizeLastSteep = `${CONSOLE_COLORS.greenBg}0${CONSOLE_COLORS.reset}`;
+
 	console.log("World map: ");
 	for (let k = 0; k < pokemon2DWorld.length; k++) {
-		console.log("[" + pokemon2DWorld[k].toString() + "]");
-	}
-
-	// printMap(pokemon2DWorld);
-
-	console.log("Number of Caught Pokemons: ", caughtPokemons);
-}
-
-/* istanbul ignore next */
-function printMap(pokemon2DWorld: number[][]): void {
-	console.log("Ash initial position map: ");
-	for (let k = 0; k < pokemon2DWorld.length; k++) {
-		const map: Array<Array<number | string>> = pokemon2DWorld;
-		const verticalSize = pokemon2DWorld.length;
-		const horizontalSize = pokemon2DWorld[k].length;
-		const { verticalCenter, horizontalCenter, north, south, west, east } =
-			getCoordinates(verticalSize, horizontalSize);
-
-		map[north][horizontalCenter] = "N";
-		map[south][horizontalCenter] = "S";
-		map[verticalCenter][horizontalCenter] = "C";
-		map[verticalCenter][west] = "O";
-		map[verticalCenter][east] = "E";
-
-		const colorizeCaractere = (character: string | number) =>
-			`${CONSOLE_COLORS.green}${character}${CONSOLE_COLORS.reset}`;
-		const colorizeCenter = `${CONSOLE_COLORS.red}C${CONSOLE_COLORS.reset}`;
-
-		// "^(n|s|e|o)*$", "gi" // => .replace(/(n|s|e|o)/gi, colorizeCaractere())
-
 		console.log(
-			"[" +
-				map[k]
-					.map((position) =>
-						position
-							.toString()
-							.replace(/(n|s|e|o)/gi, colorizeCaractere(position))
-					)
-					.toString()
-					.replace(/C/gi, colorizeCenter) +
-				"]",
-			// "Center: " + pokemon2DWorldFindCenter,
-			"H: ",
-			horizontalSize,
-			horizontalCenter,
-			"V: ",
-			verticalSize,
-			verticalCenter
+			"[" + pokemon2DWorld[k].toString().replace(/0/gi, colorizeLastSteep) + "]"
 		);
 	}
+
+	// console.log("Number of Caught Pokemons: ", caughtPokemons);
 }
