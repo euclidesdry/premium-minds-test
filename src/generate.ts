@@ -17,7 +17,7 @@ export function generate2DWorld(mapRange = 5) {
 		for (let j = 0; j < mapRange; j++) {
 			// setting second dimension to avoid error when the next line sets it own value
 			pokemon2DWorld[i] = setSecondDimension(pokemon2DWorld, i, j);
-			pokemon2DWorld[i][j] = j + 1;
+			pokemon2DWorld[i][j] = 1;
 		}
 	}
 

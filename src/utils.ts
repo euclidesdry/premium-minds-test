@@ -1,3 +1,4 @@
+import { PositionType } from "./@types/position";
 import { CONSOLE_COLORS } from "./constants";
 
 /**
@@ -25,11 +26,20 @@ export function setSecondDimension(
  * Get the position coordinates in the bidimensional matrix map by vertical size and horizontal size.
  * @param verticalSize vertical size of the matrix
  * @param horizontalSize horizontal size of the matrix
+ * @param searchForCenterAxis enable search for the matrix center axis, by default is true
  * @returns coordinates of the 2D mapRange
  */
-export function getCoordinates(verticalSize: number, horizontalSize: number) {
-	const verticalCenter = Math.floor(verticalSize / 2);
-	const horizontalCenter = Math.floor(horizontalSize / 2);
+export function getCoordinates(
+	verticalSize: number,
+	horizontalSize: number,
+	searchForCenterAxis = true
+) {
+	const verticalCenter = searchForCenterAxis
+		? Math.floor(verticalSize / 2)
+		: verticalSize;
+	const horizontalCenter = searchForCenterAxis
+		? Math.floor(horizontalSize / 2)
+		: horizontalSize;
 
 	return {
 		verticalCenter,
@@ -41,21 +51,92 @@ export function getCoordinates(verticalSize: number, horizontalSize: number) {
 	};
 }
 
+export function getCurrentPosition(
+	currentMovement: string,
+	currentPosition: PositionType,
+	mapSquareSize?: number
+) {
+	const currentCoordinates = getCoordinates(
+		currentPosition.vertical,
+		currentPosition.horizontal,
+		false
+	);
+	const position = {
+		vertical: 0,
+		horizontal: 0,
+	} as PositionType;
+
+	// console.log("currentPosition: ", currentPosition);
+
+	switch (currentMovement.toUpperCase()) {
+		case "N":
+			position.vertical = currentCoordinates.north;
+			position.horizontal = currentCoordinates.horizontalCenter;
+			break;
+		case "S":
+			position.vertical = currentCoordinates.south;
+			position.horizontal = currentCoordinates.horizontalCenter;
+			break;
+		case "O":
+			position.vertical = currentCoordinates.verticalCenter;
+			position.horizontal = currentCoordinates.west;
+			break;
+		case "E":
+			position.vertical = currentCoordinates.verticalCenter;
+			position.horizontal = currentCoordinates.east;
+			break;
+	}
+
+	return {
+		position,
+		coordinates: currentCoordinates,
+	};
+}
+
+export function calcMapExpansion(numberOfDirection: number): number {
+	let count = 0;
+	const generatedArrayWithValue1 = Array.from(
+		Array(numberOfDirection).keys()
+	).map(() => 1);
+	let digits = Number(generatedArrayWithValue1.join(",").replace(/,/gi, ""));
+
+	if (digits >= 1) ++count;
+
+	do {
+		digits /= 10; // digits = digits / 10
+		++count;
+	} while (digits / 10 >= 1);
+
+	return count * 2 + 3;
+}
+
 /**
  * A simple user output function
  */
 /* istanbul ignore next */
 export function userOutput(
 	pokemon2DWorld: number[][],
-	directionsToWalk: string,
+	directionToWalk: string,
 	caughtPokemons: number
 ): void {
-	console.log("Your Directions 🚶‍♂️: ", directionsToWalk, caughtPokemons);
+	console.log(
+		"Your Directions 🚶‍♂️: ",
+		directionToWalk.toUpperCase(),
+		caughtPokemons
+	);
+
 	console.log("World map: ");
 	for (let k = 0; k < pokemon2DWorld.length; k++) {
 		console.log("[" + pokemon2DWorld[k].toString() + "]");
 	}
 
+	// printMap(pokemon2DWorld);
+
+	console.log("Number of Caught Pokemons: ", caughtPokemons);
+}
+
+/* istanbul ignore next */
+function printMap(pokemon2DWorld: number[][]): void {
 	console.log("Ash initial position map: ");
 	for (let k = 0; k < pokemon2DWorld.length; k++) {
 		const map: Array<Array<number | string>> = pokemon2DWorld;
@@ -96,6 +177,4 @@ export function userOutput(
 			verticalCenter
 		);
 	}
-
-	console.log("Number of Caught Pokemons: ", caughtPokemons);
 }
