@@ -19,7 +19,6 @@ export function catchPokemon(
 		allDirections > 2 ? calcMapExpansion(allDirections) : 5;
 	const pokemon2DWorld: number[][] = generate2DWorld(mapExtension);
 	const initialAshPosition = getCoordinates(mapExtension, mapExtension);
-	// let lastPosition = 0;
 	let currentPosition: PositionType = {
 		vertical: initialAshPosition.verticalCenter,
 		horizontal: initialAshPosition.horizontalCenter,
@@ -29,9 +28,8 @@ export function catchPokemon(
 		initialAshPosition.horizontalCenter
 	] = 0;
 
+	/* istanbul ignore if */
 	if (showDetails) userOutput(pokemon2DWorld, "C", caughtPokemons);
-
-	// console.log("INITIAL_COORDINATES", initialAshPosition);
 
 	if (directionsToWalk.length === 0) {
 		throw new Error(sysMessage.ERROR_NO_INPUT);
@@ -55,15 +53,6 @@ export function catchPokemon(
 				newAshPosition.position.horizontal
 			];
 
-		// console.log(
-		// 	"STATUS: ",
-		// 	currentPosition,
-		// 	newAshPosition,
-		// 	pokemon2DWorld[newAshPosition.position.vertical][
-		// 		newAshPosition.position.horizontal
-		// 	]
-		// );
-
 		// adding caught pokemon to the Ash collection
 		if (selectedPosition === 1) {
 			// console.log("selectedPosition: ", selectedPosition);
@@ -76,6 +65,7 @@ export function catchPokemon(
 		currentPosition = newAshPosition.position;
 
 		// Output
+		/* istanbul ignore if */
 		if (showDetails)
 			userOutput(pokemon2DWorld, currentMovement, caughtPokemons);
 	}
