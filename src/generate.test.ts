@@ -32,7 +32,7 @@ describe("generate2DWorld function", () => {
 		expect(expected).toBeTruthy();
 	});
 
-	it(`should throw an error for value smaller than 5`, () => {
+	it(`should throw the error "${sysMessage.ERROR_UNDER_THAN_5}" for value smaller than 5`, () => {
 		expect(() => {
 			generate2DWorld(MOCK_FAIL_SQUARE_MATRIX_NUM);
 		}).toThrow(Error);
