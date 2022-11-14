@@ -1,9 +1,8 @@
 # Premium Minds Test
 
-[](https://github.com/euclidesdry/premium-minds-test/actions/workflows/node.js.yml/badge.svg?branch=main&style=flat-square)
-[GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/euclidesdry/premium-minds-test/main?color=%230088FF&label=VERSION&style=flat-square)
-[](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat-square)
-[](https://img.shields.io/badge/Language-CSS-blue.svg?style=flat-square)
+![](https://github.com/euclidesdry/premium-minds-test/actions/workflows/node.js.yml/badge.svg?branch=main&style=flat-square)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/euclidesdry/premium-minds-test/main?color=%230088FF&label=VERSION&style=flat-square)
+![](https://img.shields.io/badge/Language-TypeScript-blue.svg?style=flat-square)
 
 Pokemon Test from Premium Minds Company
 
