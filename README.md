@@ -44,7 +44,7 @@ or
 npm install
 ```
 
-Run the following command to run the development version
+Use the following command to run the development version
 
 ```bash
 yarn dev
@@ -56,7 +56,7 @@ or
 npm dev
 ```
 
-Run the following command to run the production version
+Use the following command to run the production version
 
 ```bash
 yarn start
@@ -68,7 +68,7 @@ or
 npm start
 ```
 
-Run the following command to build the project
+Use the following command to build the project
 
 ```bash
 yarn build
@@ -80,7 +80,7 @@ or
 npm build
 ```
 
-Run the following command to run the project tests suit
+Use the following command to run the project tests suit
 
 ```bash
 yarn test
