@@ -1,4 +1,8 @@
-import { GenerateNewPositionTypes, PositionType } from "./@types/position";
+import {
+	CoordinatesTypes,
+	GenerateNewPositionTypes,
+	PositionType,
+} from "./@types/position";
 import { CONSOLE_COLORS } from "./constants";
 
 /**
@@ -33,7 +37,7 @@ export function getCoordinates(
 	verticalSize: number,
 	horizontalSize: number,
 	searchForCenterAxis = true
-) {
+): CoordinatesTypes {
 	const verticalCenter = searchForCenterAxis
 		? Math.floor(verticalSize / 2)
 		: verticalSize;
@@ -51,6 +55,12 @@ export function getCoordinates(
 	};
 }
 
+/**
+ * calculate new position of the Ash on the map with the cardinal points and coordinates for the next Ash movement for each direction (N,S, W or E) + center axis
+ * @param currentMovement movement direction of the Ash on the cardinal points (N,S, W or E)
+ * @param currentPosition y and x position of the Ash on the cardinal points
+ * @returns current position and coordinates with the next movement for each direction
+ */
 export function getCurrentPosition(
 	currentMovement: string,
 	currentPosition: PositionType
@@ -92,6 +102,11 @@ export function getCurrentPosition(
 	};
 }
 
+/**
+ * calculate the map size by the number of movements
+ * @param numberOfDirection number of Ash movement directions
+ * @returns new map square size range
+ */
 export function calcMapExpansion(numberOfDirection: number): number {
 	let count = 0;
 	const generatedArrayWithValue1 = Array.from(
@@ -110,7 +125,7 @@ export function calcMapExpansion(numberOfDirection: number): number {
 }
 
 /**
- * A simple user output function
+ * A simple user output
  */
 /* istanbul ignore next */
 export function userOutput(
@@ -119,7 +134,7 @@ export function userOutput(
 	caughtPokemons: number
 ): void {
 	console.log(
-		"\n\nLas Ash Direction 🚶‍♂️: ",
+		"\n\nLast Ash Direction 🚶‍♂️: ",
 		`${CONSOLE_COLORS.green}${directionToWalk.toUpperCase()}${
 			CONSOLE_COLORS.reset
 		}`,
@@ -135,6 +150,4 @@ export function userOutput(
 			"[" + pokemon2DWorld[k].toString().replace(/0/gi, colorizeLastSteep) + "]"
 		);
 	}
-
-	// console.log("Number of Caught Pokemons: ", caughtPokemons);
 }
